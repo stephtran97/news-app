@@ -1,6 +1,7 @@
 "use strict";
 import { saveToStorage, getFromStorage } from "../scripts/storage.js";
 import { User, parseUser, Task } from "../models/User.js";
+import { currentUserStorage, checkCurrentUser, currentUser } from "./common.js";
 
 // ----------------- Global variables -----------------
 const todoArrFromStorage = JSON.parse(getFromStorage("TODO_ARRAY")) || [];
@@ -14,15 +15,11 @@ const btnAdd = document.querySelector("#btn-add");
 const inputTask = document.querySelector("#input-task");
 const todoListContainer = document.querySelector("#todo-list");
 
-let currentUserStorage = JSON.parse(getFromStorage("CURRENT_USER")) || "";
-let currentUser;
-
 /* ----------------- Check if user is logged in -----------------
 - If user is not logged in => undefined and not render data
 + If user is logged in => define as instance of User class
 */
-
-currentUser = currentUserStorage === "" ? "" : parseUser(currentUserStorage);
+checkCurrentUser();
 
 // ----------------- Global function -----------------
 function renderTodoList(el) {

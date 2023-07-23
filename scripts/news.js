@@ -1,7 +1,7 @@
 "use strict";
 import { saveToStorage, getFromStorage } from "../scripts/storage.js";
 import { User, parseUser, parseUserAdvance } from "../models/User.js";
-
+import { currentUserStorage, checkCurrentUser, currentUser } from "./common.js";
 // ----------------- Global variables -----------------
 const newsContainer = document.querySelector("#news-container");
 const btnPrevious = document.querySelector("#btn-prev");
@@ -10,15 +10,13 @@ const pageNum = document.querySelector("#page-num");
 
 let currentPage = 1;
 
-let currentUserStorage = JSON.parse(getFromStorage("CURRENT_USER")) || "";
-let currentUser;
 /* ----------------- Check if user is logged in -----------------
 - If user is not logged in => undefined and not render data
 + If user is logged in => define as instance of User class
 */
 
-currentUser =
-  currentUserStorage === "" ? "" : parseUserAdvance(currentUserStorage);
+checkCurrentUser();
+
 let pageSize = currentUser._pageSize;
 
 // ----------------- Global function -----------------

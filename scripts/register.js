@@ -2,10 +2,9 @@
 
 import { saveToStorage, getFromStorage } from "../scripts/storage.js";
 import { User } from "../models/User.js";
+import { userArr } from "./common.js";
 
 // ----------------- Global variables -----------------
-const KEY = "USER_ARRAY";
-const userArr = JSON.parse(getFromStorage(KEY)) || [];
 
 const btnRegister = document.querySelector("#btn-submit");
 const firstNameInput = document.querySelector("#input-firstname");
@@ -71,7 +70,7 @@ btnRegister.addEventListener("click", function () {
       data.password
     );
     userArr.push(currentUser);
-    saveToStorage(KEY, JSON.stringify(userArr));
+    saveToStorage("USER_ARRAY", JSON.stringify(userArr));
     window.location.href = "../pages/login.html";
   } else {
     alert(validate());

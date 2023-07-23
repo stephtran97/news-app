@@ -1,6 +1,7 @@
 "use strict";
 import { saveToStorage, getFromStorage } from "../scripts/storage.js";
 import { User, parseUser, parseUserAdvance } from "../models/User.js";
+import { currentUserStorage, checkCurrentUser, currentUser } from "./common.js";
 
 // ----------------- Global variables -----------------
 const newsContainer = document.querySelector("#news-container");
@@ -10,9 +11,6 @@ const btnNext = document.querySelector("#btn-next");
 const btnSearch = document.querySelector("#btn-submit");
 const searchInput = document.querySelector("#input-query");
 
-let currentUserStorage = JSON.parse(getFromStorage("CURRENT_USER")) || "";
-let currentUser;
-
 let currentPage = 1;
 
 let keyword = "";
@@ -20,9 +18,8 @@ let keyword = "";
 - If user is not logged in => undefined and not render data
 + If user is logged in => define as instance of User class
 */
+checkCurrentUser();
 
-currentUser =
-  currentUserStorage === "" ? "" : parseUserAdvance(currentUserStorage);
 let pageSize = currentUser._pageSize;
 // ----------------- Global function -----------------
 

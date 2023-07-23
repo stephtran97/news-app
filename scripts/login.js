@@ -1,16 +1,14 @@
 "use strict";
 import { saveToStorage, getFromStorage } from "../scripts/storage.js";
 import { User, parseUser } from "../models/User.js";
+import { userArr } from "./common.js";
 
 // ----------------- Global variables -----------------
 const userNameInput = document.querySelector("#input-username");
 const passwordInput = document.querySelector("#input-password");
 const btnLogin = document.querySelector("#btn-submit");
 
-const KEY = "USER_ARRAY";
-const userArr = JSON.parse(getFromStorage(KEY)) || [];
 let currentUserStorage = JSON.parse(getFromStorage("CURRENT_USER")) || "";
-
 // ----------------- Global function -----------------
 // Login validate function
 function loginValidate(id, pw) {
