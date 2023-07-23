@@ -1,14 +1,13 @@
 "use strict";
 import { saveToStorage, getFromStorage } from "../scripts/storage.js";
 import { User, parseUser } from "../models/User.js";
+import { currentUserStorage } from "./common.js";
 
 // ----------------- Global variables -----------------
 const loginModal = document.querySelector("#login-modal");
 const contentContainer = document.querySelector("#main-content");
 const welcomeMessage = document.querySelector("#welcome-message");
 const btnLogout = document.querySelector("#btn-logout");
-
-let currentUserStorage = JSON.parse(getFromStorage("CURRENT_USER")) || "";
 
 // ----------------- Global function -----------------
 
