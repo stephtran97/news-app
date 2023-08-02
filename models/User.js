@@ -15,7 +15,7 @@ class User {
   getNewsData = async function () {
     try {
       const data = await fetch(
-        `https://peaceful-beach-18486-6c0bb4564697.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&category=${this._category}&apiKey=${this.apiKey}`
+        `https://newsapi.org/v2/top-headlines?country=us&category=${this._category}&apiKey=${this.apiKey}`
       );
       const response = await data.json();
       const articles = await response.articles;
